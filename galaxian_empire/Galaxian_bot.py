@@ -2,7 +2,7 @@ import telebot
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 # Токен бота
-bot = telebot.TeleBot('7270049873:AAHHOdhWhgIa3sAss0nIXN9CUaBvvFyQrPg')
+bot = telebot.TeleBot('')
 
 # Обработчик команды /start
 @bot.message_handler(commands=['start'])
