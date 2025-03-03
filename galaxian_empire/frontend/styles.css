@@ -1,9 +1,12 @@
 body {
-    background-image: url('background.jpeg'); /* Укажите путь к вашему изображению */
+    background: linear-gradient(135deg, #1a1a1a, #2c3e50); /* Градиентный фон */
     background-size: cover;
     background-position: center;
-    color: white; /* Измените цвет текста, если это необходимо */
+    color: white; /* Цвет текста */
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Чтобы фон занимал всю высоту экрана */
 }
 
 #app {
@@ -12,7 +15,8 @@ body {
 }
 
 h1, h2 {
-    color: #A702AA; /* Пример цвета для заголовков */
+    color: #A702AA; /* Цвет заголовков */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Тень для текста */
 }
 
 button {
@@ -23,6 +27,7 @@ button {
     color: white;
     border: none;
     border-radius: 5px;
+    transition: background-color 0.3s ease; /* Плавное изменение цвета */
 }
 
 button:hover {
@@ -39,13 +44,20 @@ li {
     background-color: rgba(0, 0, 0, 0.5);
     margin: 5px 0;
     border-radius: 5px;
+    transition: transform 0.2s ease; /* Анимация при наведении */
+}
+
+li:hover {
+    transform: scale(1.02); /* Увеличение элемента при наведении */
 }
 
 a {
     color: #A702AA;
     text-decoration: none;
+    transition: color 0.3s ease; /* Плавное изменение цвета */
 }
 
 a:hover {
+    color: #ff00ff; /* Изменение цвета при наведении */
     text-decoration: underline;
 }
