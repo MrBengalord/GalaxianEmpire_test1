@@ -1,9 +1,9 @@
 body {
-    background: linear-gradient(135deg, #1a1a1a, #2c3e50);
+    background: linear-gradient(135deg, #0d1b2a, #1b263b); /* Темный градиент */
     background-size: cover;
     background-position: center;
     color: white;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     min-height: 100vh;
@@ -25,10 +25,10 @@ body {
 }
 
 #logo img {
-    max-width: 100%; /* Логотип будет адаптироваться под размер экрана */
-    height: auto; /* Сохраняет пропорции */
-    width: 300px; /* Фиксированная ширина */
-    height: 200px; /* Фиксированная высота */
+    max-width: 100%;
+    height: auto;
+    width: 300px;
+    height: 200px;
 }
 
 #game-section {
@@ -39,7 +39,7 @@ body {
     padding: 15px 30px;
     font-size: 18px;
     cursor: pointer;
-    background-color: #A702AA;
+    background-color: #A702AA; /* Фиолетовый */
     color: white;
     border: none;
     border-radius: 10px;
@@ -47,7 +47,7 @@ body {
 }
 
 #start-game:hover {
-    background-color: #ff00ff;
+    background-color: #ff00ff; /* Розовый */
 }
 
 #bottom-menu {
@@ -55,10 +55,12 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.7);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(167, 2, 170, 0.2)); /* Светлый градиент */
+    backdrop-filter: blur(10px); /* Размытие для эффекта стекла */
     display: flex;
     justify-content: space-around;
     padding: 10px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Легкая граница */
 }
 
 .menu-item {
@@ -77,11 +79,13 @@ body {
     width: 40px;
     height: 40px;
     margin-bottom: 5px;
+    filter: drop-shadow(0 0 5px #00ffff); /* Неоновое свечение */
 }
 
 .menu-label {
     font-size: 14px;
-    color: white;
+    color: #00ffff; /* Голубой */
+    text-shadow: 0 0 5px #00ffff; /* Неоновое свечение */
 }
 
 .hidden {
@@ -102,4 +106,6 @@ body {
     background-color: rgba(0, 0, 0, 0.5);
     margin: 5px 0;
     border-radius: 5px;
+    color: #00ffff; /* Голубой */
+    text-shadow: 0 0 5px #00ffff; /* Неоновое свечение */
 }
