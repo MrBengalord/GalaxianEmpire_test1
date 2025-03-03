@@ -64,7 +64,7 @@ h1 {
     background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(167, 2, 170, 0.2)); /* Светлый градиент */
     backdrop-filter: blur(10px); /* Размытие для эффекта стекла */
     display: flex;
-    
+    justify-content: space-around;
     padding: 15px 0; /* Увеличили отступы */
     border-top: 1px solid rgba(255, 255, 255, 0.2); /* Легкая граница */
 }
@@ -76,6 +76,14 @@ h1 {
     cursor: pointer;
     transition: transform 0.2s ease;
     gap: 15px; /* Отступ между иконкой и текстом */
+}
+
+.menu-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none; /* Убираем подчеркивание у ссылки */
+    color: inherit; /* Наследуем цвет текста */
 }
 
 .menu-item:hover {
