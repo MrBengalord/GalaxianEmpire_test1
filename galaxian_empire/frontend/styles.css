@@ -24,6 +24,13 @@ body {
     margin-bottom: 20px;
 }
 
+#logo img {
+    max-width: 100%; /* Логотип будет адаптироваться под размер экрана */
+    height: auto; /* Сохраняет пропорции */
+    width: 300px; /* Фиксированная ширина */
+    height: 200px; /* Фиксированная высота */
+}
+
 #game-section {
     margin: 20px 0;
 }
