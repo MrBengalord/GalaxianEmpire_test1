@@ -20,6 +20,12 @@ body {
     padding: 20px;
 }
 
+#game-title {
+    font-size: 36px;
+    color: #A702AA; /* Фиолетовый */
+    margin-bottom: 20px;
+}
+
 #logo {
     margin-bottom: 20px;
 }
@@ -59,7 +65,7 @@ body {
     backdrop-filter: blur(10px); /* Размытие для эффекта стекла */
     display: flex;
     justify-content: space-around;
-    padding: 10px 0;
+    padding: 15px 0; /* Увеличили отступы */
     border-top: 1px solid rgba(255, 255, 255, 0.2); /* Легкая граница */
 }
 
@@ -69,6 +75,7 @@ body {
     align-items: center;
     cursor: pointer;
     transition: transform 0.2s ease;
+    gap: 15px; /* Отступ между иконкой и текстом */
 }
 
 .menu-item:hover {
@@ -78,14 +85,11 @@ body {
 .menu-icon {
     width: 40px;
     height: 40px;
-    margin-bottom: 5px;
-    filter: drop-shadow(0 0 5px #00ffff); /* Неоновое свечение */
 }
 
 .menu-label {
     font-size: 14px;
     color: #00ffff; /* Голубой */
-    text-shadow: 0 0 5px #00ffff; /* Неоновое свечение */
 }
 
 .hidden {
@@ -107,5 +111,4 @@ body {
     margin: 5px 0;
     border-radius: 5px;
     color: #00ffff; /* Голубой */
-    text-shadow: 0 0 5px #00ffff; /* Неоновое свечение */
 }
