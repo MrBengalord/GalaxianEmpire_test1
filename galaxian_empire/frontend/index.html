@@ -8,15 +8,35 @@
 </head>
 <body>
     <div id="app">
-        <h1>GalaxianEmpire</h1>
+        <!-- Логотип -->
+        <div id="logo">
+            <img src="logo.png" alt="GalaxianEmpire Logo" width="550" height="420">
+        </div>
+
+        <!-- Кнопка запуска мини-игры -->
         <div id="game-section">
             <button id="start-game">Start Mini-Game</button>
         </div>
-        <div id="fleet-section">
+
+        <!-- Нижнее меню -->
+        <div id="bottom-menu">
+            <div class="menu-item" id="fleet-menu">
+                <img src="fleet-icon.png" alt="Fleet Icon" class="menu-icon">
+                <span class="menu-label">Fleet</span>
+            </div>
+            <div class="menu-item" id="marketplace-menu">
+                <a href="marketplace.html">
+                    <img src="marketplace-icon.png" alt="Marketplace Icon" class="menu-icon">
+                    <span class="menu-label">Marketplace</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Секция с флотом (скрыта по умолчанию) -->
+        <div id="fleet-section" class="hidden">
             <h2>Your Fleet</h2>
             <ul id="fleet-list"></ul>
         </div>
-        <a href="marketplace.html">Go to Marketplace</a>
     </div>
     <script src="app.js"></script>
 </body>

@@ -3,6 +3,8 @@ const tg = window.Telegram.WebApp;
 
 // Основные элементы интерфейса
 const startGameButton = document.getElementById('start-game');
+const fleetMenu = document.getElementById('fleet-menu');
+const fleetSection = document.getElementById('fleet-section');
 const fleetList = document.getElementById('fleet-list');
 const marketplaceList = document.getElementById('marketplace-list');
 
@@ -63,6 +65,11 @@ function startMiniGame() {
     // Например, переход на другую страницу или запуск игрового процесса
 }
 
+// Показ/скрытие секции флота
+function toggleFleetSection() {
+    fleetSection.classList.toggle('hidden');
+}
+
 // Инициализация приложения
 function initApp() {
     // Инициализация Telegram Web App
@@ -75,6 +82,11 @@ function initApp() {
     // Назначаем обработчик для кнопки запуска мини-игры
     if (startGameButton) {
         startGameButton.addEventListener('click', startMiniGame);
+    }
+
+    // Назначаем обработчик для иконки флота
+    if (fleetMenu) {
+        fleetMenu.addEventListener('click', toggleFleetSection);
     }
 }
 
