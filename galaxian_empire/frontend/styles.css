@@ -75,7 +75,7 @@ h1 {
     align-items: center;
     cursor: pointer;
     transition: transform 0.2s ease;
-    gap: 15px; /* Отступ между иконкой и текстом */
+    
 }
 
 .menu-link {
@@ -84,6 +84,7 @@ h1 {
     align-items: center;
     text-decoration: none; /* Убираем подчеркивание у ссылки */
     color: inherit; /* Наследуем цвет текста */
+    
 }
 
 .menu-item:hover {
@@ -93,11 +94,15 @@ h1 {
 .menu-icon {
     width: 40px;
     height: 40px;
+    margin: 0; /* Убедимся, что нет лишних отступов */
+    padding: 0; /* Убедимся, что нет лишних отступов */
 }
 
 .menu-label {
     font-size: 14px;
     color: #00ffff; /* Голубой */
+    margin: 0; /* Убедимся, что нет лишних отступов */
+    padding: 0; /* Убедимся, что нет лишних отступов */
 }
 
 .hidden {
