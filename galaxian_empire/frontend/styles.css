@@ -98,7 +98,7 @@ h1 {
 
 .menu-label {
     font-size: 14px;
-    color: #530753; /* Голубой */
+    color: #017b14; /* Голубой */
     margin: 0; /* Убедимся, что нет лишних отступов */
     padding: 0; /* Убедимся, что нет лишних отступов */
 }
@@ -121,5 +121,5 @@ h1 {
     background-color: rgba(0, 0, 0, 0.5);
     margin: 5px 0;
     border-radius: 5px;
-    color: #530753; /* Голубой */
+    color: #017b14; /* Голубой */
 }
