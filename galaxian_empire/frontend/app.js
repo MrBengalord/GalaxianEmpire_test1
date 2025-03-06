@@ -58,11 +58,29 @@ async function loadMarketplace() {
     }
 }
 
+// Пример отправки результатов игры на бэкенд
+function saveScore(score) {
+    fetch('http://localhost:3000/api/save-score', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ score })
+    }).then(response => response.json())
+      .then(data => tg.showAlert(`Score saved: ${data.score}`))
+      .catch(error => {
+          console.error('Failed to save score:', error);
+          tg.showAlert("Failed to save score. Please try again later.");
+      });
+}
+
 // Запуск мини-игры
 function startMiniGame() {
     tg.showAlert("Mini-game is starting!");
     // Здесь будет логика запуска мини-игры
     // Например, переход на другую страницу или запуск игрового процесса
+
+    // Пример: после завершения игры вызываем saveScore
+    const gameScore = 1000; // Пример очков, которые набрал игрок
+    saveScore(gameScore);
 }
 
 // Показ/скрытие секции флота

@@ -13,7 +13,7 @@
 
         <!-- Логотип -->
         <div id="logo">
-            <img src="logo.png" alt="GalaxianEmpire Logo" width="300" height="200">
+            <img src="assets/logo.png" alt="GalaxianEmpire Logo" width="300" height="200">
         </div>
 
         <!-- Кнопка запуска мини-игры -->
@@ -23,13 +23,18 @@
 
         <!-- Нижнее меню -->
         <div id="bottom-menu">
+            <!-- Иконка Fleet -->
             <div class="menu-item" id="fleet-menu">
-                <img src="fleet-icon.png" alt="Fleet Icon" class="menu-icon">
-                <span class="menu-label">Fleet</span>
+                <a href="#" class="menu-link"> <!-- Добавили <a> для Fleet -->
+                    <img src="assets/fleet-icon.png" alt="Fleet Icon" class="menu-icon">
+                    <span class="menu-label">Fleet</span>
+                </a>
             </div>
+        
+            <!-- Иконка Marketplace -->
             <div class="menu-item" id="marketplace-menu">
                 <a href="marketplace.html" class="menu-link">
-                    <img src="marketplace-icon.png" alt="Marketplace Icon" class="menu-icon">
+                    <img src="assets/marketplace-icon.png" alt="Marketplace Icon" class="menu-icon">
                     <span class="menu-label">Marketplace</span>
                 </a>
             </div>
@@ -42,5 +47,6 @@
         </div>
     </div>
     <script src="app.js"></script>
+    <script src="game.js"></script>
 </body>
 </html>
