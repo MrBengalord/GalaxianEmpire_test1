@@ -25,7 +25,7 @@
         <div id="bottom-menu">
             <!-- Иконка Fleet -->
             <div class="menu-item" id="fleet-menu">
-                <a href="#" class="menu-link"> <!-- Добавили <a> для Fleet -->
+                <a href="#" class="menu-link">
                     <img src="assets/fleet-icon.png" alt="Fleet Icon" class="menu-icon">
                     <span class="menu-label">Fleet</span>
                 </a>
@@ -46,6 +46,10 @@
             <ul id="fleet-list"></ul>
         </div>
     </div>
+
+    <!-- Canvas для игры (скрыт по умолчанию) -->
+    <canvas id="game-canvas" width="800" height="600" style="display: none;"></canvas>
+
     <script src="app.js"></script>
     <script src="game.js"></script>
 </body>

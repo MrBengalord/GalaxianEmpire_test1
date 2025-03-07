@@ -18,6 +18,8 @@ const enemies = [];
 const bulletWidth = 5;
 const bulletHeight = 15;
 const bullets = [];
+let gameScore = 0;
+let gameOver = false;
 
 // Отрисовка игрока
 function drawPlayer() {
@@ -43,20 +45,48 @@ function drawBullets() {
 
 // Обновление игры
 function update() {
+    if (gameOver) return; // Останавливаем игру, если она завершена
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawPlayer();
     drawEnemies();
     drawBullets();
+
+    if (enemy.y + enemy.height >= canvas.height) {
+        gameOver = true;
+        tg.showAlert("Game Over! You lost.");
+        saveScore(gameScore);
+        return;
+    }
+    
+    if (gameScore >= 10) {
+        gameOver = true;
+        tg.showAlert("You win! Score: " + gameScore);
+        saveScore(gameScore);
+        return;
+    }
+
+    if (enemies.length === 0) {
+        gameOver = true;
+        tg.showAlert("You win! All enemies destroyed.");
+        saveScore(gameScore);
+        return;
+    }
+    showMainInterface
     requestAnimationFrame(update);
 }
 
 // Запуск игры
-document.getElementById('start-game').addEventListener('click', () => {
-    update();
-});
+function startGame() {
+    gameScore = 0; // Сбрасываем счет
+    gameOver = false; // Сбрасываем флаг завершения игры
+    update(); // Запускаем игровой цикл
+}
 
 // Управление игроком
 document.addEventListener('keydown', (e) => {
+    if (gameOver) return; // Игнорируем управление, если игра завершена
+
     if (e.key === 'ArrowLeft' && player.x > 0) {
         player.x -= player.speed;
     }
