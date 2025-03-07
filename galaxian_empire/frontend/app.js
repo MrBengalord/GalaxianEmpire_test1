@@ -58,8 +58,8 @@ async function loadMarketplace() {
     }
 }
 
-// Пример отправки результатов игры на бэкенд
 function saveScore(score) {
+    console.log("Sending score to backend:", score); // Добавь эту строку
     fetch('http://localhost:3000/api/save-score', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
