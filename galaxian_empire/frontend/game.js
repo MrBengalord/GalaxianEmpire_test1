@@ -58,7 +58,7 @@ function update() {
         saveScore(gameScore);
         return;
     }
-
+    
     if (gameScore >= 10) {
         gameOver = true;
         tg.showAlert("You win! Score: " + gameScore);
@@ -76,14 +76,12 @@ function update() {
     requestAnimationFrame(update);
 }
 
-window.startGame = function() {
+// Запуск игры
+function startGame() {
     gameScore = 0; // Сбрасываем счет
     gameOver = false; // Сбрасываем флаг завершения игры
-    enemies.length = 0; // Очищаем массив врагов
-    bullets.length = 0; // Очищаем массив пуль
-    createEnemies(); // Создаем новых врагов
     update(); // Запускаем игровой цикл
-};
+}
 
 // Управление игроком
 document.addEventListener('keydown', (e) => {
