@@ -1,3 +1,5 @@
+import { startGame } from './game.js';
+
 // Инициализация Telegram Web App
 let tg;
 if (window.Telegram && window.Telegram.WebApp) {

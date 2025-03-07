@@ -21,6 +21,19 @@ const bullets = [];
 let gameScore = 0;
 let gameOver = false;
 
+// Создаем врагов
+function createEnemies() {
+    for (let i = 0; i < 5; i++) {
+        enemies.push({
+            x: i * 100 + 50,
+            y: 50,
+            width: 50,
+            height: 50,
+            speed: 1
+        });
+    }
+}
+
 // Отрисовка игрока
 function drawPlayer() {
     ctx.fillStyle = player.color;
@@ -52,34 +65,68 @@ function update() {
     drawEnemies();
     drawBullets();
 
-    if (enemy.y + enemy.height >= canvas.height) {
-        gameOver = true;
-        tg.showAlert("Game Over! You lost.");
-        saveScore(gameScore);
-        return;
-    }
-    
-    if (gameScore >= 10) {
-        gameOver = true;
-        tg.showAlert("You win! Score: " + gameScore);
-        saveScore(gameScore);
-        return;
-    }
+    // Движение врагов
+    enemies.forEach(enemy => {
+        enemy.y += enemy.speed;
 
+        // Проверка на проигрыш (враги достигли нижней границы)
+        if (enemy.y + enemy.height >= canvas.height) {
+            gameOver = true;
+            tg.showAlert("Game Over! You lost.");
+            saveScore(gameScore); // Отправляем результат на бэкенд
+            return;
+        }
+    });
+
+    // Движение пуль
+    bullets.forEach((bullet, index) => {
+        bullet.y -= 5; // Пули летят вверх
+
+        // Проверка на столкновение пули с врагами
+        enemies.forEach((enemy, enemyIndex) => {
+            if (bullet.x < enemy.x + enemy.width &&
+                bullet.x + bulletWidth > enemy.x &&
+                bullet.y < enemy.y + enemy.height &&
+                bullet.y + bulletHeight > enemy.y) {
+                // Уничтожение врага
+                enemies.splice(enemyIndex, 1);
+                bullets.splice(index, 1);
+                gameScore += 1; // Увеличиваем счет
+
+                // Проверка на победу (набрано 10 очков)
+                if (gameScore >= 10) {
+                    gameOver = true;
+                    tg.showAlert("You win! Score: " + gameScore);
+                    saveScore(gameScore); // Отправляем результат на бэкенд
+                    return;
+                }
+            }
+        });
+
+        // Удаление пуль, которые вылетели за пределы экрана
+        if (bullet.y + bulletHeight < 0) {
+            bullets.splice(index, 1);
+        }
+    });
+
+    // Проверка на победу (все враги уничтожены)
     if (enemies.length === 0) {
         gameOver = true;
         tg.showAlert("You win! All enemies destroyed.");
-        saveScore(gameScore);
+        saveScore(gameScore); // Отправляем результат на бэкенд
         return;
     }
-    showMainInterface
+
     requestAnimationFrame(update);
 }
 
-// Запуск игры
-function startGame() {
+// Экспорт функции startGame
+export function startGame() {
     gameScore = 0; // Сбрасываем счет
     gameOver = false; // Сбрасываем флаг завершения игры
+    enemies.length = 0; // Очищаем массив врагов
+    bullets.length = 0; // Очищаем массив пуль
+    createEnemies(); // Создаем новых врагов
     update(); // Запускаем игровой цикл
 }
 
