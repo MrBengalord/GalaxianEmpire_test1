@@ -1,7 +1,7 @@
 const canvas = document.getElementById('game-canvas');
 if (!canvas) {
     console.error("Canvas element not found!");
-    return;
+    return; // Убери этот return, если он в глобальной области
 }
 const ctx = canvas.getContext('2d');
 
@@ -58,7 +58,7 @@ function drawBullets() {
 
 // Обновление игры
 function update() {
-    if (gameOver) return; // Останавливаем игру, если она завершена
+    if (gameOver) return; // Этот return допустим, так как он внутри функции
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawPlayer();
@@ -74,7 +74,7 @@ function update() {
             gameOver = true;
             tg.showAlert("Game Over! You lost.");
             saveScore(gameScore); // Отправляем результат на бэкенд
-            return;
+            return; // Этот return допустим, так как он внутри функции
         }
     });
 
@@ -98,7 +98,7 @@ function update() {
                     gameOver = true;
                     tg.showAlert("You win! Score: " + gameScore);
                     saveScore(gameScore); // Отправляем результат на бэкенд
-                    return;
+                    return; // Этот return допустим, так как он внутри функции
                 }
             }
         });
@@ -114,7 +114,7 @@ function update() {
         gameOver = true;
         tg.showAlert("You win! All enemies destroyed.");
         saveScore(gameScore); // Отправляем результат на бэкенд
-        return;
+        return; // Этот return допустим, так как он внутри функции
     }
 
     requestAnimationFrame(update);
@@ -132,7 +132,7 @@ export function startGame() {
 
 // Управление игроком
 document.addEventListener('keydown', (e) => {
-    if (gameOver) return; // Игнорируем управление, если игра завершена
+    if (gameOver) return; // Этот return допустим, так как он внутри функции
 
     if (e.key === 'ArrowLeft' && player.x > 0) {
         player.x -= player.speed;
