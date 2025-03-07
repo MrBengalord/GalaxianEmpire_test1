@@ -1,5 +1,14 @@
 // Инициализация Telegram Web App
-const tg = window.Telegram.WebApp;
+let tg;
+if (window.Telegram && window.Telegram.WebApp) {
+    tg = window.Telegram.WebApp;
+} else {
+    // Режим разработки (если не в Telegram)
+    tg = {
+        ready: () => console.log("Telegram Web App is ready"),
+        showAlert: (message) => alert(message) // Заменяем alert для отладки
+    };
+}
 
 // Основные элементы интерфейса
 const startGameButton = document.getElementById('start-game');
@@ -59,7 +68,7 @@ async function loadMarketplace() {
 }
 
 function saveScore(score) {
-    console.log("Sending score to backend:", score); // Добавь эту строку
+    console.log("Sending score to backend:", score);
     fetch('http://localhost:3000/api/save-score', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
