@@ -131,17 +131,48 @@ export function startGame() {
     update(); // Запускаем игровой цикл
 }
 
-// Управление игроком
-document.addEventListener('keydown', (e) => {
-    if (gameOver) return;
+// Создаем невидимые кнопки для управления на смартфоне
+const touchControls = document.createElement('div');
+touchControls.style.position = 'absolute';
+touchControls.style.bottom = '0';
+touchControls.style.left = '0';
+touchControls.style.right = '0';
+touchControls.style.height = '20%'; // Зона управления в нижней части экрана
+touchControls.style.display = 'flex';
+touchControls.style.justifyContent = 'space-between';
 
-    if (e.key === 'ArrowLeft' && player.x > 0) {
-        player.x -= player.speed;
-    }
-    if (e.key === 'ArrowRight' && player.x < canvas.width - player.width) {
-        player.x += player.speed;
-    }
-    if (e.key === ' ') { // Пробел для стрельбы
-        bullets.push({ x: player.x + player.width / 2 - bulletWidth / 2, y: player.y });
-    }
+// Левая зона для движения влево
+const leftZone = document.createElement('div');
+leftZone.style.width = '50%'; // Левая половина экрана
+leftZone.style.height = '100%';
+leftZone.style.backgroundColor = 'transparent'; // Невидимая
+
+// Правая зона для движения вправо
+const rightZone = document.createElement('div');
+rightZone.style.width = '50%'; // Правая половина экрана
+rightZone.style.height = '100%';
+rightZone.style.backgroundColor = 'transparent'; // Невидимая
+
+touchControls.appendChild(leftZone);
+touchControls.appendChild(rightZone);
+document.body.appendChild(touchControls);
+
+// Обработка нажатий на левую зону
+leftZone.addEventListener('touchstart', (e) => {
+    e.preventDefault(); // Предотвращаем стандартное поведение (например, прокрутку)
+    if (gameOver) return;
+    player.x = Math.max(0, player.x - player.speed);
 });
+
+// Обработка нажатий на правую зону
+rightZone.addEventListener('touchstart', (e) => {
+    e.preventDefault(); // Предотвращаем стандартное поведение
+    if (gameOver) return;
+    player.x = Math.min(canvas.width - player.width, player.x + player.speed);
+});
+
+// Автоматическая стрельба
+setInterval(() => {
+    if (gameOver) return;
+    bullets.push({ x: player.x + player.width / 2 - bulletWidth / 2, y: player.y });
+}, 1000); // Пули создаются каждую секунду
