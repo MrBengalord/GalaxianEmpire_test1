@@ -1,4 +1,4 @@
-import { startGame } from './game.js';
+import { startGame } from '../static/game.js';
 
 // Инициализация Telegram Web App
 let tg;
