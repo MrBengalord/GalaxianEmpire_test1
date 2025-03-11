@@ -1,7 +1,6 @@
 const canvas = document.getElementById('game-canvas');
 if (!canvas) {
     console.error("Canvas element not found!");
-    return; // Убери этот return, если он в глобальной области
 }
 const ctx = canvas.getContext('2d');
 
@@ -58,7 +57,8 @@ function drawBullets() {
 
 // Обновление игры
 function update() {
-    if (gameOver) return; // Этот return допустим, так как он внутри функции
+    console.log("Game loop is running"); // Логируем запуск игрового цикла
+    if (gameOver) return;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawPlayer();
@@ -74,7 +74,7 @@ function update() {
             gameOver = true;
             tg.showAlert("Game Over! You lost.");
             saveScore(gameScore); // Отправляем результат на бэкенд
-            return; // Этот return допустим, так как он внутри функции
+            return;
         }
     });
 
@@ -98,7 +98,7 @@ function update() {
                     gameOver = true;
                     tg.showAlert("You win! Score: " + gameScore);
                     saveScore(gameScore); // Отправляем результат на бэкенд
-                    return; // Этот return допустим, так как он внутри функции
+                    return;
                 }
             }
         });
@@ -114,7 +114,7 @@ function update() {
         gameOver = true;
         tg.showAlert("You win! All enemies destroyed.");
         saveScore(gameScore); // Отправляем результат на бэкенд
-        return; // Этот return допустим, так как он внутри функции
+        return;
     }
 
     requestAnimationFrame(update);
@@ -122,6 +122,7 @@ function update() {
 
 // Экспорт функции startGame
 export function startGame() {
+    console.log("Game started"); // Логируем запуск игры
     gameScore = 0; // Сбрасываем счет
     gameOver = false; // Сбрасываем флаг завершения игры
     enemies.length = 0; // Очищаем массив врагов
@@ -132,7 +133,7 @@ export function startGame() {
 
 // Управление игроком
 document.addEventListener('keydown', (e) => {
-    if (gameOver) return; // Этот return допустим, так как он внутри функции
+    if (gameOver) return;
 
     if (e.key === 'ArrowLeft' && player.x > 0) {
         player.x -= player.speed;
