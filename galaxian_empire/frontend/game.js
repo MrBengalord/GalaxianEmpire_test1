@@ -10,7 +10,7 @@ const player = {
     width: 50,
     height: 50,
     color: '#00FF00',
-    speed: 5
+    speed: 10 // Увеличена скорость
 };
 
 const enemies = [];
@@ -19,6 +19,10 @@ const bulletHeight = 15;
 const bullets = [];
 let gameScore = 0;
 let gameOver = false;
+
+// Добавляем флаги для управления
+let isLeftPressed = false;
+let isRightPressed = false;
 
 // Создаем врагов
 function createEnemies() {
@@ -55,9 +59,18 @@ function drawBullets() {
     });
 }
 
+// Обновление движения игрока
+function updatePlayerMovement() {
+    if (isLeftPressed) {
+        player.x = Math.max(0, player.x - player.speed);
+    }
+    if (isRightPressed) {
+        player.x = Math.min(canvas.width - player.width, player.x + player.speed);
+    }
+}
+
 // Обновление игры
 function update() {
-    console.log("Game loop is running"); // Логируем запуск игрового цикла
     if (gameOver) return;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -65,114 +78,113 @@ function update() {
     drawEnemies();
     drawBullets();
 
-    // Движение врагов
+    updatePlayerMovement(); // Интеграция движения
+
+    // Остальная логика игры
     enemies.forEach(enemy => {
         enemy.y += enemy.speed;
-
-        // Проверка на проигрыш (враги достигли нижней границы)
         if (enemy.y + enemy.height >= canvas.height) {
             gameOver = true;
             tg.showAlert("Game Over! You lost.");
-            saveScore(gameScore); // Отправляем результат на бэкенд
+            saveScore(gameScore);
             return;
         }
     });
 
-    // Движение пуль
     bullets.forEach((bullet, index) => {
-        bullet.y -= 5; // Пули летят вверх
-
-        // Проверка на столкновение пули с врагами
+        bullet.y -= 5;
         enemies.forEach((enemy, enemyIndex) => {
             if (bullet.x < enemy.x + enemy.width &&
                 bullet.x + bulletWidth > enemy.x &&
                 bullet.y < enemy.y + enemy.height &&
                 bullet.y + bulletHeight > enemy.y) {
-                // Уничтожение врага
                 enemies.splice(enemyIndex, 1);
                 bullets.splice(index, 1);
-                gameScore += 1; // Увеличиваем счет
-
-                // Проверка на победу (набрано 10 очков)
+                gameScore += 1;
                 if (gameScore >= 10) {
                     gameOver = true;
                     tg.showAlert("You win! Score: " + gameScore);
-                    saveScore(gameScore); // Отправляем результат на бэкенд
+                    saveScore(gameScore);
                     return;
                 }
             }
         });
-
-        // Удаление пуль, которые вылетели за пределы экрана
         if (bullet.y + bulletHeight < 0) {
             bullets.splice(index, 1);
         }
     });
 
-    // Проверка на победу (все враги уничтожены)
     if (enemies.length === 0) {
         gameOver = true;
         tg.showAlert("You win! All enemies destroyed.");
-        saveScore(gameScore); // Отправляем результат на бэкенд
+        saveScore(gameScore);
         return;
     }
 
     requestAnimationFrame(update);
 }
 
-// Экспорт функции startGame
 export function startGame() {
-    console.log("Game started"); // Логируем запуск игры
-    gameScore = 0; // Сбрасываем счет
-    gameOver = false; // Сбрасываем флаг завершения игры
-    enemies.length = 0; // Очищаем массив врагов
-    bullets.length = 0; // Очищаем массив пуль
-    createEnemies(); // Создаем новых врагов
-    update(); // Запускаем игровой цикл
+    console.log("Game started");
+    gameScore = 0;
+    gameOver = false;
+    enemies.length = 0;
+    bullets.length = 0;
+    createEnemies();
+    update();
 }
 
-// Создаем невидимые кнопки для управления на смартфоне
+// Невидимое управление для мобильных устройств
 const touchControls = document.createElement('div');
 touchControls.style.position = 'absolute';
 touchControls.style.bottom = '0';
 touchControls.style.left = '0';
 touchControls.style.right = '0';
-touchControls.style.height = '20%'; // Зона управления в нижней части экрана
+touchControls.style.height = '20%';
 touchControls.style.display = 'flex';
 touchControls.style.justifyContent = 'space-between';
 
-// Левая зона для движения влево
 const leftZone = document.createElement('div');
-leftZone.style.width = '50%'; // Левая половина экрана
+leftZone.style.width = '50%';
 leftZone.style.height = '100%';
-leftZone.style.backgroundColor = 'transparent'; // Невидимая
+leftZone.style.backgroundColor = 'transparent';
 
-// Правая зона для движения вправо
 const rightZone = document.createElement('div');
-rightZone.style.width = '50%'; // Правая половина экрана
+rightZone.style.width = '50%';
 rightZone.style.height = '100%';
-rightZone.style.backgroundColor = 'transparent'; // Невидимая
+rightZone.style.backgroundColor = 'transparent';
 
 touchControls.appendChild(leftZone);
 touchControls.appendChild(rightZone);
 document.body.appendChild(touchControls);
 
-// Обработка нажатий на левую зону
+// Обработчики касаний
 leftZone.addEventListener('touchstart', (e) => {
-    e.preventDefault(); // Предотвращаем стандартное поведение (например, прокрутку)
-    if (gameOver) return;
-    player.x = Math.max(0, player.x - player.speed);
+    e.preventDefault();
+    isLeftPressed = true;
 });
 
-// Обработка нажатий на правую зону
+leftZone.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    isLeftPressed = false;
+});
+
 rightZone.addEventListener('touchstart', (e) => {
-    e.preventDefault(); // Предотвращаем стандартное поведение
-    if (gameOver) return;
-    player.x = Math.min(canvas.width - player.width, player.x + player.speed);
+    e.preventDefault();
+    isRightPressed = true;
+});
+
+rightZone.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    isRightPressed = false;
 });
 
 // Автоматическая стрельба
 setInterval(() => {
-    if (gameOver) return;
-    bullets.push({ x: player.x + player.width / 2 - bulletWidth / 2, y: player.y });
-}, 1000); // Пули создаются каждую секунду
+    if (!gameOver) {
+        bullets.push({
+            x: player.x + player.width / 2 - bulletWidth / 2,
+            y: player.y
+        });
+    }
+}, 1000);
