@@ -87,7 +87,6 @@ function update() {
             gameOver = true;
             tg.showAlert("Game Over! You lost.");
             saveScore(gameScore);
-            showMainInterface(); // Возвращаемся на главную страницу
             return;
         }
     });
@@ -106,7 +105,6 @@ function update() {
                     gameOver = true;
                     tg.showAlert("You win! Score: " + gameScore);
                     saveScore(gameScore);
-                    showMainInterface(); // Возвращаемся на главную страницу
                     return;
                 }
             }
@@ -120,7 +118,6 @@ function update() {
         gameOver = true;
         tg.showAlert("You win! All enemies destroyed.");
         saveScore(gameScore);
-        showMainInterface(); // Возвращаемся на главную страницу
         return;
     }
 
