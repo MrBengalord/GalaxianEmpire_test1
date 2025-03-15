@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GalaxianEmpire</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+<!-- To play game open terminal and start python server ( python -m SimpleHTTPServer)
+then go to http://127.0.0.1:8000/ -->
+
 </head>
 <body>
-    <div id="app">
-        <!-- Название игры -->
+<div  id="mainContent">
+    <div id="titleScreen">
+
         <h1 id="game-title">GalaxianEmpire</h1>
 
         <!-- Логотип -->
@@ -21,35 +25,19 @@
             <button id="start-game">Start Mini-Game</button>
         </div>
 
-        <!-- Нижнее меню -->
-        <div id="bottom-menu">
-            <!-- Иконка Fleet -->
-            <div class="menu-item" id="fleet-menu">
-                <a href="#" class="menu-link">
-                    <img src="assets/fleet-icon.png" alt="Fleet Icon" class="menu-icon">
-                    <span class="menu-label">Fleet</span>
-                </a>
-            </div>
-        
-            <!-- Иконка Marketplace -->
-            <div class="menu-item" id="marketplace-menu">
-                <a href="marketplace.html" class="menu-link">
-                    <img src="assets/marketplace-icon.png" alt="Marketplace Icon" class="menu-icon">
-                    <span class="menu-label">Marketplace</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- Секция с флотом (скрыта по умолчанию) -->
-        <div id="fleet-section" class="hidden">
-            <h2>Your Fleet</h2>
-            <ul id="fleet-list"></ul>
-        </div>
     </div>
 
-    <!-- Canvas для игры (скрыт по умолчанию) -->
-    <canvas id="game-canvas" width="800" height="600" style="display: none;"></canvas>
-
-    <script type="module" src="app.js"></script>
+    <!-- Canvas for the background -->
+    <canvas id="background" width="360" height="600">
+    </canvas>
+    <!-- The canvas for all enemy ships and bullets -->
+    <canvas id="main" width="360" height="600">
+    </canvas>
+    <!-- The canvas the ship uses (can only move up
+     one forth the screen.) -->
+    <canvas id="ship" width="360" height="600">
+    </canvas>
+</div>
+<script src="game.js"></script>
 </body>
 </html>
