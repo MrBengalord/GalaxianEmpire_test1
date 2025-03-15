@@ -332,7 +332,14 @@
          this.shipCanvas = document.getElementById('ship');
          this.mainCanvas = document.getElementById('main');
  
- 
+         // Устанавливаем фиксированные размеры канвасов
+         this.bgCanvas.width = 360;
+         this.bgCanvas.height = 600;
+         this.shipCanvas.width = 360;
+         this.shipCanvas.height = 600;
+         this.mainCanvas.width = 360;
+         this.mainCanvas.height = 600;
+
          // Test to see if canvas is supported
          if (this.bgCanvas.getContext) {
              this.bgContext = this.bgCanvas.getContext('2d');
@@ -376,6 +383,9 @@
      };
  }
  
+ window.addEventListener('resize', centerGame);
+
+
  
  /*
   The animation loop. Calls the requestAnimationFrame shim to
@@ -391,6 +401,14 @@
      game.ship.bulletPool.animate();
  }
  
+ function centerGame() {
+    const gameContainer = document.getElementById('game-container');
+    if (gameContainer) {
+        gameContainer.style.top = '50%';
+        gameContainer.style.left = '50%';
+        gameContainer.style.transform = 'translate(-50%, -50%)';
+    }
+ }
  /**
   request Anim shim layer by Paul Irish
   Finds the first API that works to optimize the animation loop,
@@ -407,6 +425,7 @@
              window.setTimeout(callback, 1000 / 60);
          };
  })();
+ 
  
  
  

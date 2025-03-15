@@ -1,13 +1,26 @@
 #instructions h2 {
     color: #D43B1C;
 }
+/* Основной контейнер для игры */
+#game-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 360px; /* Оригинальная ширина игры */
+    height: 600px; /* Оригинальная высота игры */
+    overflow: hidden; /* Чтобы ничего не выходило за пределы */
+}
 
-
+/* Стили для всех канвасов */
 canvas {
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: transparent;
+    image-rendering: pixelated; /* Для четкости пиксельной графики */
 }
 
 #background {
@@ -74,6 +87,8 @@ h1 {
     border: none;
     border-radius: 10px;
     transition: background-color 0.3s ease;
+    position: relative; /* или absolute/fixed */
+    z-index: 1000; /* Высокий z-index, чтобы кнопка была поверх канвасов */
 }
 
 #start-game:hover {
