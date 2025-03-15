@@ -2,19 +2,6 @@
     color: #D43B1C;
 }
 
-#mainContent {
-    width: 100vw;
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
-}
-
-canvas {
-    position: absolute;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: pixelated;
-}
 
 canvas {
     position: absolute;
