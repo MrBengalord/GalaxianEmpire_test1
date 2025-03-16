@@ -115,6 +115,41 @@ h1 {
     background-color: #530753; /* Розовый */
 }
 
+/* Стили для футера */
+#navigation-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(167, 2, 170, 0.2)); /* Светлый градиент */
+    backdrop-filter: blur(10px); /* Размытие для эффекта стекла */
+    display: flex;
+    justify-content: center; /* Центрирование элементов по горизонтали */
+    align-items: center; /* Центрирование по вертикали */
+    padding: 15px 0; /* Отступы сверху и снизу */
+    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Легкая граница */
+    z-index: 1000;
+}
+
+/* Стили для кнопки "Back in cabin" */
+#home-button {
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #A702AA; /* Фиолетовый */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    z-index: 1000; /* Высокий z-index, чтобы кнопка была поверх канвасов */
+}
+
+#home-button:hover {
+    background-color: #530753; /* Темно-фиолетовый при наведении */
+}
+
+
+/* Нижняя панель навигации */
 #bottom-menu {
     position: fixed;
     bottom: 0;
@@ -123,42 +158,56 @@ h1 {
     background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(167, 2, 170, 0.2)); /* Светлый градиент */
     backdrop-filter: blur(10px); /* Размытие для эффекта стекла */
     display: flex;
-    justify-content: space-around;
-    padding: 15px 0; /* Увеличили отступы */
+    justify-content: center; /* Центрирование элементов по горизонтали */
+    gap: 40px; /* Расстояние между элементами */
+    padding: 15px 0; /* Отступы сверху и снизу */
     border-top: 1px solid rgba(255, 255, 255, 0.2); /* Легкая граница */
     z-index: 1000;
 }
 
-.menu-item {
+/* Элементы меню */
+#bottom-menu .menu-item {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column; /* Иконка и текст друг над другом */
+    align-items: center; /* Центрирование по горизонтали */
+    justify-content: center; /* Центрирование по вертикали */
     cursor: pointer;
+    transition: transform 0.2s ease;
+    width: 100px; /* Фиксированная ширина для каждого элемента */
 }
 
-.menu-link {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none; /* Убираем подчеркивание у ссылки */
-    color: inherit; /* Наследуем цвет текста */
-}
-
-.menu-item:hover {
+#bottom-menu .menu-item:hover {
     transform: scale(1.1);
 }
 
-.menu-icon {
-    width: 40px;
-    height: 40px;
-
+/* Иконки */
+#bottom-menu .menu-icon {
+    width: 40px; /* Фиксированная ширина */
+    height: 40px; /* Фиксированная высота */
+    margin: 0; /* Убедимся, что нет лишних отступов */
+    padding: 0; /* Убедимся, что нет лишних отступов */
 }
 
-.menu-label {
+/* Текст */
+#bottom-menu .menu-label {
     font-size: 14px;
-    color: #bf4fc9; 
-
+    color: #bf4fc9; /* Голубой */
+    margin: 0; /* Убедимся, что нет лишних отступов */
+    padding: 0; /* Убедимся, что нет лишних отступов */
+    margin-top: 8px; /* Отступ между иконкой и текстом */
+    text-align: center; /* Центрирование текста */
+    width: 100%; /* Текст занимает всю ширину элемента */
 }
+/* "Это тот самый контейнер, отвечаюший за иконки с текстом" */
+.menu-link {
+    display: flex; /* Делаем контейнер flex-контейнером */
+    flex-direction: column; /* Элементы располагаются вертикально */
+    align-items: center; /* Центрирование по горизонтали */
+    justify-content: space-between; /* Центрирование по вертикали */
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
 
 .hidden {
     display: none;
