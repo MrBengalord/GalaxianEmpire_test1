@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GalaxianEmpire - Космическая Аркадная Стратегия</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="retro_styles.css">
+    <link rel="icon" type="image/png" href="img/favicon.ico">
+    <!-- Подключаем шрифтовые иконки -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Ретро-футуристические эффекты фона -->
+    <div class="retro-bg"></div>
+    <div class="grid-bg"></div>
+    <div class="stars"></div>
+    <div class="nebula"></div>
+    <div class="crt-effect"></div>
+    <div class="scanline"></div>
+    
+    <!-- Заголовок -->
+    <header class="header">
+        <h1>GalaxianEmpire</h1>
+    </header>
+    
+    <!-- Основной контент -->
+    <div class="main-content">
+        <div class="logo-container">
+            <div class="logo-text">
+                <div class="galaxian">GALAXIAN</div>
+                <div class="empire">EMPIRE</div>
+            </div>
+            <div class="logo-glow"></div>
+        </div>
+        
+        <p class="tagline">Исследуйте галактику. Завоюйте планеты. Постройте империю.</p>
+        
+        <div class="hologram-container float">
+            <div class="hologram">
+                <img src="img/ship.png" alt="Космический корабль">
+            </div>
+        </div>
+        
+        <button id="start-game" class="retro-button pulse">Начать Игру</button>
+    </div>
+    
+    <!-- Игровой интерфейс (скрыт по умолчанию) -->
+    <div class="game-ui">
+        <div class="score-display">Счёт: <span id="score">0</span></div>
+        <div class="lives-display">Жизни: <span id="lives">3</span></div>
+        <div class="level-display">Уровень: <span id="level">1</span></div>
+        <div class="pause-button"><i class="fas fa-pause"></i></div>
+    </div>
+    
+    <!-- Мета-игровой интерфейс (скрыт по умолчанию) -->
+    <div class="meta-game-container">
+        <div class="meta-section">
+            <h3>Ресурсы</h3>
+            <div class="resource-display">
+                <div class="resource-item">
+                    <div class="resource-icon"><i class="fas fa-gem"></i></div>
+                    <div class="resource-value">1,250</div>
+                    <div>Кристаллы</div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-icon"><i class="fas fa-bolt"></i></div>
+                    <div class="resource-value">3,780</div>
+                    <div>Энергия</div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-icon"><i class="fas fa-microchip"></i></div>
+                    <div class="resource-value">890</div>
+                    <div>Технологии</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="meta-section">
+            <h3>Планеты</h3>
+            <div class="planet-grid">
+                <div class="planet-item">
+                    <div class="planet-icon" style="background: radial-gradient(circle, #4da6ff 0%, #0066cc 100%);"></div>
+                    <div class="planet-name">Аквария</div>
+                    <div class="planet-status">Завоёвана</div>
+                </div>
+                <div class="planet-item">
+                    <div class="planet-icon" style="background: radial-gradient(circle, #ff5e5e 0%, #cc0000 100%);"></div>
+                    <div class="planet-name">Пирос</div>
+                    <div class="planet-status">Не исследована</div>
+                </div>
+                <div class="planet-item">
+                    <div class="planet-icon" style="background: radial-gradient(circle, #66ff66 0%, #00cc00 100%);"></div>
+                    <div class="planet-name">Терравия</div>
+                    <div class="planet-status">Союзник</div>
+                </div>
+                <div class="planet-item">
+                    <div class="planet-icon" style="background: radial-gradient(circle, #cc66ff 0%, #9900cc 100%);"></div>
+                    <div class="planet-name">Нексус</div>
+                    <div class="planet-status">Враждебная</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Экран загрузки -->
+    <div class="loading-container" id="loading-screen">
+        <div class="logo-text">
+            <div class="galaxian">GALAXIAN</div>
+            <div class="empire">EMPIRE</div>
+        </div>
+        <div class="loading-progress">
+            <div class="loading-bar"></div>
+        </div>
+        <div class="loading-text">Инициализация систем...</div>
+    </div>
+    
+    <!-- Оверлей паузы (скрыт по умолчанию) -->
+    <div class="overlay" id="pause-overlay">
+        <div class="overlay-content">
+            <h2>Пауза</h2>
+            <button class="overlay-button" id="resume-button">Продолжить</button>
+            <button class="overlay-button" id="restart-button">Начать заново</button>
+            <button class="overlay-button" id="exit-button">Выйти в меню</button>
+        </div>
+    </div>
+    
+    <!-- Нижняя навигация -->
+    <nav class="nav-bar">
+        <a href="#" class="nav-item" id="fleet-nav">
+            <div class="icon"><i class="fas fa-rocket"></i></div>
+            <div class="label">Мой Флот</div>
+        </a>
+        <a href="#" class="nav-item" id="market-nav">
+            <div class="icon"><i class="fas fa-store"></i></div>
+            <div class="label">Рынок</div>
+        </a>
+        <a href="#" class="nav-item" id="council-nav">
+            <div class="icon"><i class="fas fa-users"></i></div>
+            <div class="label">Совет</div>
+        </a>
+        <a href="#" class="nav-item" id="tasks-nav">
+            <div class="icon"><i class="fas fa-tasks"></i></div>
+            <div class="label">Задания</div>
+        </a>
+    </nav>
+    
+    <!-- Подключение скриптов -->
+    <script src="scripts/game.js"></script>
+    <script src="galaxy_map.js"></script>
+    <script src="pae_system.js"></script>
+    <script src="reputation_system.js"></script>
+    <script src="integration.js"></script>
+    <script src="telegram_integration.js"></script>
+    
+    <script>
+        // Имитация загрузки
+        window.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                document.getElementById('loading-screen').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('loading-screen').style.display = 'none';
+                }, 500);
+            }, 2000);
+        });
+        
+        // Обработчики для навигации
+        document.getElementById('fleet-nav').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Переход в раздел "Мой Флот"');
+        });
+        
+        document.getElementById('market-nav').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Переход в раздел "Рынок"');
+        });
+        
+        document.getElementById('council-nav').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Переход в раздел "Совет"');
+        });
+        
+        document.getElementById('tasks-nav').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Переход в раздел "Задания"');
+        });
+    </script>
+</body>
+</html>
