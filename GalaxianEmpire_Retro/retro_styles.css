@@ -370,7 +370,7 @@ body {
   height: 100%;
   background: linear-gradient(135deg, transparent 0%, rgba(0, 180, 255, 0.2) 50%, transparent 100%);
   animation: hologram-scan 3s linear infinite;
-  z-index: 1; /* Добавлено: размещает под изображением, но над подсветкой */
+  z-index: 100; /* Добавлено: размещает под изображением, но над подсветкой */
 }
 
 .hologram::after {
@@ -384,7 +384,7 @@ body {
   background: radial-gradient(ellipse at center, var(--primary-color) 0%, transparent 70%);
   filter: blur(5px);
   opacity: 0.7;
-  z-index: 0; /* Добавлено: размещает подсветку под всеми элементами */
+  z-index: 90; /* Добавлено: размещает подсветку под всеми элементами */
 }
 
 @keyframes hologram-scan {
