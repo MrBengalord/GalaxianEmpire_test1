@@ -20,7 +20,7 @@
     <div class="scanline"></div>
     
     <!-- Заголовок -->
-    <header class="header">
+    <header class="header" id="head">
         <h1>GalaxianEmpire</h1>
     </header>
     
@@ -38,7 +38,7 @@
         
         <div class="hologram-container float">
             <div class="hologram">
-                <img src="ship.png" alt="Космический корабль">
+                <img src="img/ship.png" alt="Космический корабль">
             </div>
         </div>
         
@@ -51,7 +51,7 @@
     </div>
 
     <!-- Игровой интерфейс (скрыт по умолчанию) -->
-    <div class="game-ui" id="game-ui" style="display: none;">
+    <div class="stats-container" id="game-ui" style="display: none;">
         <div id="score-display">Счёт: <span id="score-value">0</span></div>
         <div id="lives-display"></div>
         <div class="level-display">Уровень: <span id="level">1</span></div>
@@ -190,6 +190,7 @@
                 document.getElementById('game-ui').style.display = 'block';
                 // delete nav bar
                 document.getElementById("bottom-menu").style.display = 'none';
+                document.getElementById("head").style.display = 'none';
                 // Создаем canvas и инициализируем игру
                 var canvas = document.getElementById('game-canvas');
                 canvas.width = window.innerWidth;
