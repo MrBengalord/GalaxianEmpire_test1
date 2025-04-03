@@ -510,7 +510,6 @@ body {
   color: var(--primary-color);
   text-shadow: var(--glow-primary);
   background-color: rgba(10, 16, 51, 0.7);
-  padding: 5px 15px;
   border-radius: 20px;
   border: 1px solid var(--primary-color);
 }
