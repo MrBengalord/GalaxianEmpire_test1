@@ -349,6 +349,7 @@ body {
   width: 150px;
   height: 150px;
   margin: 0 auto;
+  overflow: hidden; /* Добавлено: ограничивает видимость эффекта внутри контейнера */
 }
 
 .hologram img {
@@ -356,9 +357,11 @@ body {
   height: 100%;
   object-fit: contain;
   filter: drop-shadow(0 0 5px var(--primary-color));
+  position: relative; /* Добавлено: устанавливает позиционный контекст */
+  z-index: 2; /* Добавлено: размещает изображение поверх эффектов */
 }
 
-.hologram::before {
+.hologram .scan-line { /* Изменено: отдельный элемент для сканирующей линии */
   content: '';
   position: absolute;
   top: 0;
@@ -367,6 +370,7 @@ body {
   height: 100%;
   background: linear-gradient(135deg, transparent 0%, rgba(0, 180, 255, 0.2) 50%, transparent 100%);
   animation: hologram-scan 3s linear infinite;
+  z-index: 1; /* Добавлено: размещает под изображением, но над подсветкой */
 }
 
 .hologram::after {
@@ -380,6 +384,7 @@ body {
   background: radial-gradient(ellipse at center, var(--primary-color) 0%, transparent 70%);
   filter: blur(5px);
   opacity: 0.7;
+  z-index: 0; /* Добавлено: размещает подсветку под всеми элементами */
 }
 
 @keyframes hologram-scan {
