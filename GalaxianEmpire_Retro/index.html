@@ -6,7 +6,7 @@
     <title>GalaxianEmpire - Космическая Аркадная Стратегия</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="retro_styles.css">
-    <link rel="icon" type="image/png" href="img/icon.ico">
+    <link rel="icon" type="image/png" href="icon.ico">
     <!-- Подключаем шрифтовые иконки -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -25,7 +25,7 @@
     </header>
     
     <!-- Основной контент -->
-    <div class="main-content">
+    <div class="main-content" id="titleScreen">
         <div class="logo-container">
             <div class="logo-text">
                 <div class="galaxian">GALAXIAN</div>
@@ -38,17 +38,22 @@
         
         <div class="hologram-container float">
             <div class="hologram">
-                <img src="img/ship.png" alt="Космический корабль">
+                <img src="ship.png" alt="Космический корабль">
             </div>
         </div>
         
-        <button id="start-game" class="retro-button pulse">Начать Игру</button>
+        <button id="start-game" class="retro-button pulse">Defend your Planet</button>
     </div>
     
+    <!-- Game container with canvas -->
+    <div id="game-container" style="display: none;">
+        <canvas id="game-canvas"></canvas>
+    </div>
+
     <!-- Игровой интерфейс (скрыт по умолчанию) -->
-    <div class="game-ui">
-        <div class="score-display">Счёт: <span id="score">0</span></div>
-        <div class="lives-display">Жизни: <span id="lives">3</span></div>
+    <div class="game-ui" id="game-ui" style="display: none;">
+        <div id="score-display">Счёт: <span id="score-value">0</span></div>
+        <div id="lives-display"></div>
         <div class="level-display">Уровень: <span id="level">1</span></div>
         <div class="pause-button"><i class="fas fa-pause"></i></div>
     </div>
@@ -126,7 +131,7 @@
     </div>
     
     <!-- Нижняя навигация -->
-    <nav class="nav-bar">
+    <nav class="nav-bar" id="bottom-menu">
         <a href="#" class="nav-item" id="fleet-nav">
             <div class="icon"><i class="fas fa-rocket"></i></div>
             <div class="label">Мой Флот</div>
@@ -146,7 +151,7 @@
     </nav>
     
     <!-- Подключение скриптов -->
-    <script src="scripts/game.js"></script>
+    <script src="game.js"></script>
     <script src="galaxy_map.js"></script>
     <script src="pae_system.js"></script>
     <script src="reputation_system.js"></script>
@@ -162,6 +167,46 @@
                     document.getElementById('loading-screen').style.display = 'none';
                 }, 500);
             }, 2000);
+        });
+        
+        // Инициализация объекта для отслеживания нажатых клавиш
+        var KEY_STATUS = {};
+        document.addEventListener('keydown', function(e) {
+            KEY_STATUS[e.code] = true;
+        });
+        document.addEventListener('keyup', function(e) {
+            KEY_STATUS[e.code] = false;
+        });
+        
+        // Глобальный объект игры
+        var game = {
+            init: function() {
+                // Инициализация игры
+                return true;
+            },
+            start: function() {
+                // Запуск игры
+                document.getElementById('game-container').style.display = 'block';
+                document.getElementById('game-ui').style.display = 'block';
+                
+                // Создаем canvas и инициализируем игру
+                var canvas = document.getElementById('game-canvas');
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                
+                console.log("Game started!");
+            }
+        };
+        
+        // Функция инициализации окна
+        window.init = function() {
+            console.log("Window initialized!");
+        };
+        
+        // Add event listener to start game button
+        document.getElementById('start-game').addEventListener('click', function() {
+            document.getElementById('titleScreen').style.display = 'none';
+            game.start();
         });
         
         // Обработчики для навигации
