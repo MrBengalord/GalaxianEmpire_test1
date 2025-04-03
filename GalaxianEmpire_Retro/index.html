@@ -188,7 +188,8 @@
                 // Запуск игры
                 document.getElementById('game-container').style.display = 'block';
                 document.getElementById('game-ui').style.display = 'block';
-                
+                // delete nav bar
+                document.getElementById("bottom-menu").style.display = 'none';
                 // Создаем canvas и инициализируем игру
                 var canvas = document.getElementById('game-canvas');
                 canvas.width = window.innerWidth;
