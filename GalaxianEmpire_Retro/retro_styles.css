@@ -524,7 +524,7 @@ body {
   padding: 0 20px;
 }
 
-.level-display { grid-column: 1; }
+.level-display { grid-column: 2; }
 .lives-display { grid-column: 1; grid-row: 2; }
 .score-display { grid-column: 3; }
 
